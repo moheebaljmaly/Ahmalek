@@ -1,0 +1,97 @@
+</body>
+</html><!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فئات منتجات الأطفال</title>
+    <link rel="stylesheet" href="styles.css"> <!-- ربط ملف CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9; /* لون خلفية فاتح */
+        }
+
+        header {
+            background: linear-gradient(to right, #ffcc00, #ffb300); /* تدرج أصفر جذاب */
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em; /* حجم خط أكبر */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            text-align: center;
+            padding: 20px; /* إضافة padding */
+        }
+
+        .subcategory {
+            background: #ffffff; /* لون خلفية أبيض */
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer; /* تغيير المؤشر عند التمرير */
+            transition: transform 0.2s, box-shadow 0.2s; /* تأثيرات عند التمرير */
+        }
+
+        .subcategory:hover {
+            transform: translateY(-5px); /* رفع العنصر عند التمرير */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button {
+            background-color: #ffcc00; /* لون زر العودة أصفر */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button i {
+            margin-left: 5px;
+        }
+
+        .back-button:hover {
+            background-color: #ffb300; /* تغيير لون زر العودة عند التمرير */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>فئات منتجات الأطفال</h1>
+</header>
+
+<div class="container">
+    <button class="back-button" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> العودة إلى القائمة الرئيسية
+    </button>
+    <div class="subcategory">ملابس أطفال</div>
+    <div class="subcategory">ألعاب</div>
+    <div class="subcategory">أدوات تعليمية</div>
+</div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ملف styles.css */
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* لون خلفية فاتح */
+        }
+
+        header {
+            background: linear-gradient(135deg, #ac976a, #d1b9a0); /* تدرج جذاب */
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.8em; /* حجم خط أكبر */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .description {
+            background: #ffffff; /* لون خلفية للنبذة */
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-size: 1.2em; /* حجم خط مناسب */
+            color: #333; /* لون النص */
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px; /* تقليل المسافة العلوية */
+        }
+
+        .category {
+            background: #ffffff; /* لون خلفية أبيض */
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer; /* تغيير المؤشر عند التمرير */
+            transition: transform 0.3s, box-shadow 0.3s; /* تأثيرات عند التمرير */
+            display: inline-block;
+            width: 90%; /* جعل العرض 90% ليتناسب مع الهواتف */
+            max-width: 300px; /* تحديد الحد الأقصى للعرض */
+        }
+
+        .category:hover {
+            transform: translateY(-5px); /* رفع العنصر عند التمرير */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .add-product-btn,
+        .view-all-btn {
+            margin: 20px;
+            padding: 12px 25px;
+            background-color: #3498db; /* لون زر جذاب */
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            font-size: 15px;
+        }
+
+        .add-product-btn:hover,
+        .view-all-btn:hover {
+            background-color: #2980b9; /* تغيير لون الزر عند التمرير */
+        }
+
+        .form-container {
+            display: none;
+            background: #ffffff; /* لون خلفية للنموذج */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 400px;
+            transition: all 0.3s;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #3498db; /* تغيير لون الحدود عند التركيز */
+            outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button[type="submit"] {
+            background-color: #27ae60; /* لون زر الإرسال */
+            color: white;
+        }
+
+        button[type="button"] {
+            background-color: #e74c3c; /* لون زر الإلغاء */
+            color: white;
+        }
+
+        button[type="button"]:hover {
+            background-color: #c0392b; /* تغيير لون زر الإلغاء عند التمرير */
+        }
+
+        /* تحسين التنسيق للأزرار */
+        .back-button {
+            background-color: #ac976a; /* لون زر العودة */
+            color: black;
+            border: none;
+            padding: 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .category {
+                width: 90%; /* جعل العرض 90% للهواتف */
+            }
+
+            .add-product-btn,
+            .view-all-btn {
+                width: 90%; /* جعل العرض 90% للهواتف */
+            }
+        }
+    </style>
+    <script>
+        function goToSubcategories(category) {
+            window.location.href = category + '-subcategories.html';
+        }
+
+        function toggleAddProductForm() {
+            const form = document.getElementById('addProductForm');
+            form.style.display = form.style.display === 'block' ? 'none' : 'block';
+        }
+
+        const categories = {
+            "ملابس رجالية": ["قمصان", "بنطلونات", "أحذية"],
+            "ملابس نسائية": ["فساتين", "تنورات", "أحذية"],
+            "إلكترونيات": ["هواتف", "أجهزة لوحية", "حاسوب محمول"],
+            "عناية شخصية": ["مستحضرات تجميل", "عطور"],
+            "أدوات مطبخ": ["أواني", "أدوات طهي"],
+            "إكسسوارات": ["ساعات", "أساور"],
+            "منتجات الأطفال": ["ملابس أطفال", "ألعاب"],
+            "ملابس بنات": ["فساتين بنات", "بلوزات"],
+        };
+
+        function updateSubcategories() {
+            const categorySelect = document.getElementById('categorySelect');
+            const subcategorySelect = document.getElementById('subcategorySelect');
+            const selectedCategory = categorySelect.value;
+            subcategorySelect.innerHTML = '';
+
+            if (categories[selectedCategory]) {
+                categories[selectedCategory].forEach(subcategory => {
+                    const option = document.createElement('option');
+                    option.value = subcategory;
+                    option.text = subcategory;
+                    subcategorySelect.appendChild(option);
+                });
+            }
+        }
+
+        function submitProductForm(event) {
+            event.preventDefault();
+            alert("تم إضافة المنتج بنجاح!");
+            document.getElementById('addProductForm').style.display = 'none';
+        }
+
+        function viewAllProducts() {
+            window.location.href = 'all-products.html';
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>ahlamek - أحلامك</h1>
+</header>
+
+<div class="description">
+    <p>مرحبًا بكم في متجرنا! استكشف مجموعة متنوعة من المنتجات في مختلف الأقسام. ابحث عن منتجك المفضل أو قم بإضافة منتج جديد.</p>
+</div>
+
+<div class="container">
+    <form class="form">
+        <button>
+            <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
+                <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </button>
+        <input class="input" placeholder="ابحث عن منتج..." required="" type="text">
+        <button class="reset" type="reset">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </form>
+
+    <button class="back-button" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> العودة إلى القائمة الرئيسية
+    </button>
+    <button class="view-all-btn" onclick="viewAllProducts()">عرض جميع المنتجات</button>
+    <button class="add-product-btn" onclick="toggleAddProductForm()">إضافة منتج</button>
+
+    <div class="form-container" id="addProductForm" style="display:none;">
+        <h2>إضافة منتج جديد</h2>
+        <form onsubmit="submitProductForm(event)">
+            <input type="text" placeholder="اسم المنتج" required>
+            <input type="text" placeholder="سعر المنتج" required>
+            <input type="text" placeholder="مواصفات المنتج" required>
+            <select id="categorySelect" onchange="updateSubcategories()" required>
+                <option value="">اختر القسم</option>
+                <option value="ملابس رجالية">ملابس رجالية</option>
+                <option value="إلكترونيات">إلكترونيات</option>
+                <option value="عناية شخصية">عناية شخصية</option>
+                <option value="أدوات مطبخ">أدوات مطبخ</option>
+                <option value="إكسسوارات">إكسسوارات</option>
+                <option value="منتجات الأطفال">منتجات الأطفال</option>
+                <option value="ملابس بنات">ملابس بنات</option>
+            </select>
+            <select id="subcategorySelect" required>
+                <option value="">اختر الفئة</option>
+            </select>
+            <button type="submit">إضافة المنتج</button>
+            <button type="button" onclick="toggleAddProductForm()" style="background-color: #e74c3c;">إلغاء</button>
+        </form>
+    </div>
+
+    <div class="category" onclick="goToSubcategories('men')">ملابس رجالية</div>
+    <div class="category" onclick="goToSubcategories('women')">ملابس نسائية</div>
+    <div class="category" onclick="goToSubcategories('electronics')">إلكترونيات</div>
+    <div class="category" onclick="goToSubcategories('beauty')">عناية شخصية</div>
+    <div class="category" onclick="goToSubcategories('kitchen')">أدوات مطبخ</div>
+    <div class="category" onclick="goToSubcategories('accessories')">إكسسوارات</div>
+    <div class="category" onclick="goToSubcategories('children')">منتجات الأطفال</div>
+    <div class="category" onclick="goToSubcategories('girls')">ملابس بنات</div>
+</div>
+
+</body>
+</html>
